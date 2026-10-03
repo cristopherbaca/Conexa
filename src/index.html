@@ -27,13 +27,13 @@
 
         <div class="sidebar-section">
           <label>Recent conversations</label>
-          <button class="history-item selected"><span class="history-dot"></span><span>Vehicle return policy</span><time>Now</time></button>
-          <button class="history-item"><span class="history-dot"></span><span>Roadside assistance SLA</span><time>2h</time></button>
-          <button class="history-item"><span class="history-dot"></span><span>Winter tire coverage</span><time>Yesterday</time></button>
+          <button class="history-item selected" data-title="Vehicle return policy"><span class="history-dot"></span><span>Vehicle return policy</span><time>Now</time><b class="delete-history" aria-label="Delete chat">×</b></button>
+          <button class="history-item" data-title="Roadside assistance SLA"><span class="history-dot"></span><span>Roadside assistance SLA</span><time>2h</time><b class="delete-history" aria-label="Delete chat">×</b></button>
+          <button class="history-item" data-title="Winter tire coverage"><span class="history-dot"></span><span>Winter tire coverage</span><time>Yesterday</time><b class="delete-history" aria-label="Delete chat">×</b></button>
         </div>
 
         <div class="sidebar-footer">
-          <div class="security-badge"><span>✓</span><div><strong>Private workspace</strong><small>Self-hosted · Encrypted</small></div></div>
+          <div class="security-badge"><span>✓</span><div><strong>Cloud workspace</strong><small>Encrypted · Team-ready</small></div></div>
           <button class="user-profile" id="adminProfile"><div class="avatar">CY</div><div><strong>Cristopher Baca</strong><small>Application administrator</small></div><span class="more">•••</span></button>
         </div>
       </aside>
@@ -45,21 +45,6 @@
         </header>
 
         <div class="content-scroll">
-          <section class="hero">
-            <div>
-              <div class="eyebrow"><span class="spark">✦</span> INTERNAL AI ASSISTANT</div>
-              <h1>Good morning, Cristopher<span>.</span></h1>
-              <p>Get accurate answers from your team's policies, playbooks, and knowledge base.</p>
-            </div>
-            <div class="model-chip"><span class="pulse"></span><div><small>AI CONNECTION</small><strong id="connectionLabel">API key required</strong></div></div>
-          </section>
-
-          <section class="stats-row">
-            <div class="stat-card"><div class="stat-icon blue">◈</div><div><small>Knowledge indexed</small><strong>1,284 <em>documents</em></strong></div><span class="stat-change">↑ 12%</span></div>
-            <div class="stat-card"><div class="stat-icon green">⌁</div><div><small>Answer confidence</small><strong>94.8<em>% average</em></strong></div><span class="stat-change">↑ 2.4%</span></div>
-            <div class="stat-card"><div class="stat-icon violet">◉</div><div><small>Questions resolved</small><strong>2,409 <em>this month</em></strong></div><span class="stat-change">↑ 18%</span></div>
-          </section>
-
           <section class="workspace-grid">
             <div class="chat-panel">
               <div class="panel-heading"><div><h2>Ask anything about operations</h2><p>Answers combine your simulated RAG context with ChatGPT.</p></div><button class="dots" id="chatMenuButton">•••</button></div>
@@ -71,7 +56,7 @@
               </div>
               <div class="composer-wrap">
                 <div class="composer"><textarea id="prompt" rows="1" placeholder="Ask a question about your operations..."></textarea><button id="sendButton" class="send-button" aria-label="Send message">↑</button></div>
-                <div class="composer-meta"><span><span class="lock">⌾</span> Private · Your data stays on-premise</span><span><kbd>Enter</kbd> to send <kbd>Shift + Enter</kbd> for new line</span></div>
+                <div class="composer-meta"><span><span class="lock">⌾</span> Cloud workspace · Encrypted transport</span><span><kbd>Enter</kbd> to send <kbd>Shift + Enter</kbd> for new line</span></div>
               </div>
             </div>
 
@@ -84,12 +69,28 @@
               <div class="tip-card"><span class="tip-spark">✦</span><div><strong>Tip for better answers</strong><p>Include a location, team, or policy name in your question for more precise results.</p></div></div>
             </aside>
           </section>
+          <section class="app-view knowledge-view" id="knowledgeView" hidden>
+            <div class="view-heading"><div><span class="eyebrow">KNOWLEDGE BASE</span><h2>Manage your simulated RAGs</h2><p>Edit the content that Conexa AI uses as retrieval context.</p></div><div class="view-actions"><select id="ragTarget"><option value="fleet">Fleet &amp; Policies RAG</option><option value="care">Customer Care RAG</option></select><button class="primary-action" id="addDocument">+ Add document</button></div></div>
+            <div class="rag-manager-grid">
+              <article class="rag-manager-card"><div class="manager-top"><span class="rag-icon blue-rag">R1</span><div><h3>Fleet &amp; Policies RAG</h3><small>fleet-policies-rag.json · 6 documents</small></div><span class="rag-status">Indexed</span></div><p>Vehicle returns, fleet inspections, branch procedures, and rental policy guidance.</p><div class="tag-row"><span>Hybrid search</span><span>1,024 chunks</span><span>Updated today</span></div><button class="secondary-action rag-editor" data-rag="fleet">Open RAG documents →</button></article>
+              <article class="rag-manager-card"><div class="manager-top"><span class="rag-icon violet-rag">R2</span><div><h3>Customer Care RAG</h3><small>customer-care-rag.json · 6 documents</small></div><span class="rag-status">Indexed</span></div><p>Roadside assistance, escalations, customer cases, and service recovery playbooks.</p><div class="tag-row"><span>Semantic search</span><span>768 chunks</span><span>Updated today</span></div><button class="secondary-action rag-editor" data-rag="care">Open RAG documents →</button></article>
+            </div>
+            <div class="document-editor" id="documentEditor"><div class="editor-heading"><h3 id="editorTitle">RAG documents</h3><button class="secondary-action" id="closeEditor">Close</button></div><form class="document-form" id="documentForm"><input id="documentTitle" required placeholder="Document title" /><textarea id="documentContent" required rows="3" placeholder="Add retrieval content for this RAG..."></textarea><button class="primary-action" type="submit">Add to selected RAG</button></form><div id="documentList"></div></div>
+          </section>
+          <section class="app-view activity-view" id="activityView" hidden>
+            <div class="view-heading"><div><span class="eyebrow">RECENT ACTIVITY</span><h2>Conversation history</h2><p>Open a previous chat to continue where you left off.</p></div><button class="secondary-action" id="clearActivity">Clear activity</button></div>
+            <div class="activity-list" id="activityList"></div>
+          </section>
+          <section class="app-view help-view" id="helpView" hidden>
+            <div class="view-heading"><div><span class="eyebrow">HELP CENTER</span><h2>How to use Conexa AI</h2><p>A quick guide for the application administrator.</p></div></div>
+            <div class="help-grid"><article><span>01</span><h3>Connect ChatGPT</h3><p>Enter your API key in the workspace context panel and select “Test &amp; enable chat”. The key stays in memory for this browser session.</p></article><article><span>02</span><h3>Manage RAGs</h3><p>Open Knowledge base to inspect the two simulated retrieval sources and add prototype documents to either pipeline.</p></article><article><span>03</span><h3>Review conversations</h3><p>Recent activity stores the prototype’s conversation summaries so an administrator can reopen a previous question.</p></article></div>
+          </section>
           <footer>Conexa AI v1.0 <span>•</span> Built for internal use <span>•</span> <a href="#">Privacy & security</a></footer>
         </div>
         <div class="toast" id="toast" role="status"></div>
-        <div class="admin-modal" id="adminModal" aria-hidden="true"><div class="admin-card"><div class="admin-heading"><div><span class="eyebrow">ADMINISTRATION</span><h2>Application control center</h2></div><button class="modal-close" id="closeAdmin">×</button></div><div class="admin-grid"><div class="admin-stat"><small>Role</small><strong>Application administrator</strong><span>Full prototype access</span></div><div class="admin-stat"><small>RAG pipelines</small><strong>2 active</strong><span>Fleet + Customer Care</span></div><div class="admin-stat"><small>API session</small><strong id="adminApiState">Not connected</strong><span>Memory-only credential</span></div></div><div class="admin-actions"><button id="adminClear">Clear chat history</button><button id="adminReset">Reset prototype state</button></div></div></div>
+        <div class="admin-modal" id="adminModal" aria-hidden="true"><div class="admin-card"><div class="admin-heading"><div><span class="eyebrow">ADMINISTRATION</span><h2>Application control center</h2></div><button class="modal-close" id="closeAdmin">×</button></div><div class="admin-grid"><div class="admin-stat"><small>Role</small><strong>Application administrator</strong><span>Full cloud workspace access</span></div><div class="admin-stat"><small>RAG pipelines</small><strong>2 active</strong><span>Fleet + Customer Care</span></div><div class="admin-stat"><small>API session</small><strong id="adminApiState">Not connected</strong><span>Memory-only credential</span></div></div><div class="admin-api"><label for="adminApiKey">ChatGPT API key</label><div class="api-input"><input id="adminApiKey" type="password" placeholder="sk-proj-••••••••••••" autocomplete="off" /><button id="adminTestApi" type="button">Connect</button></div></div><div class="admin-actions"><button id="adminClear">Clear chat history</button><button id="adminReset">Reset prototype state</button></div></div></div>
       </main>
     </div>
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>

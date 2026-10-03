@@ -1,0 +1,37 @@
+{
+  "id": "customer-care",
+  "name": "Customer Care RAG",
+  "retrieval": "semantic",
+  "documents": [
+    {
+      "id": "care-roadside-001",
+      "title": "Roadside assistance triage",
+      "content": "Collect the contract number, customer callback number, exact vehicle location, safety conditions, and vehicle symptoms. Mark cases involving injury, danger, or an immobilized customer as urgent."
+    },
+    {
+      "id": "care-escalation-002",
+      "title": "Regional escalation matrix",
+      "content": "Escalate unresolved roadside cases to the regional assistance queue. A supervisor reviews cases that exceed the response target or require a replacement vehicle."
+    },
+    {
+      "id": "care-recovery-003",
+      "title": "Service recovery guidance",
+      "content": "Acknowledge the customer’s experience, summarize the next action, set a callback expectation, and record the case outcome in the support timeline."
+    },
+    {
+      "id": "care-privacy-004",
+      "title": "Customer data handling",
+      "content": "Use contract and case identifiers in internal notes. Do not include unnecessary payment details, identity documents, or unrelated personal information in a support response."
+    },
+    {
+      "id": "care-callback-005",
+      "title": "Callback commitment standard",
+      "content": "When a callback is promised, record the target time, responsible queue, preferred contact channel, and a concise summary of the customer’s requested outcome."
+    },
+    {
+      "id": "care-replacement-006",
+      "title": "Replacement vehicle request",
+      "content": "Confirm vehicle immobility, passenger safety, location, contract status, and destination branch before requesting a replacement vehicle through the regional assistance queue."
+    }
+  ]
+}
