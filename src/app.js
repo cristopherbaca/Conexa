@@ -6,13 +6,22 @@ const responses = {
 const conversation = document.querySelector("#conversation");
 const prompt = document.querySelector("#prompt");
 const sendButton = document.querySelector("#sendButton");
+const themeToggle = document.querySelector("#themeToggle");
+const apiKey = document.querySelector("#apiKey");
+const apiStatus = document.querySelector("#apiStatus");
+
+if (localStorage.getItem("supportchat-theme") === "dark") {
+  document.body.classList.add("dark-theme");
+  themeToggle.innerHTML = "☀ <span>Light</span>";
+  themeToggle.setAttribute("aria-label", "Switch to light theme");
+}
 
 function addMessage(text, role) {
   const item = document.createElement("div");
   item.className = `message ${role}`;
   item.innerHTML = role === "user"
     ? `<div class="message-avatar user-message">CY</div><div><div class="message-meta"><strong>You</strong><span>just now</span></div><div class="message-bubble">${text}</div></div>`
-    : `<div class="message-avatar">✦</div><div><div class="message-meta"><strong>SupportChat</strong><span>just now</span></div><div class="message-bubble">${text}</div><div class="answer-source">⌁  3 sources used · Local retrieval</div></div>`;
+    : `<div class="message-avatar">✦</div><div><div class="message-meta"><strong>Conexa AI</strong><span>just now</span></div><div class="message-bubble">${text}</div><div class="answer-source">⌁  3 sources used · Local retrieval</div></div>`;
   conversation.appendChild(item);
   conversation.scrollTop = conversation.scrollHeight;
 }
@@ -39,4 +48,27 @@ document.querySelector("#newChat").addEventListener("click", () => {
   conversation.innerHTML = "";
   addMessage("New conversation started. What would you like to look up in the Avis and Budget knowledge base?", "assistant");
   prompt.focus();
+});
+
+themeToggle.addEventListener("click", () => {
+  const dark = document.body.classList.toggle("dark-theme");
+  localStorage.setItem("supportchat-theme", dark ? "dark" : "light");
+  themeToggle.innerHTML = dark ? "☀ <span>Light</span>" : "☾ <span>Dark</span>";
+  themeToggle.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+});
+
+document.querySelector("#toggleKey").addEventListener("click", (event) => {
+  const isPassword = apiKey.type === "password";
+  apiKey.type = isPassword ? "text" : "password";
+  event.currentTarget.textContent = isPassword ? "Hide" : "Show";
+});
+
+document.querySelector("#saveApi").addEventListener("click", () => {
+  if (!apiKey.value.trim()) {
+    apiStatus.textContent = "Enter a key to simulate a connection";
+    apiStatus.classList.add("api-error");
+    return;
+  }
+  apiStatus.textContent = "Connected for this prototype · key stays in this browser";
+  apiStatus.classList.remove("api-error");
 });

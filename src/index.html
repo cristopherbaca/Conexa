@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SupportChat — Avis / Budget AI workspace</title>
+    <title>Conexa AI — Avis / Budget workspace</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -14,13 +14,13 @@
       <aside class="sidebar">
         <div class="brand">
           <div class="brand-mark"><span></span><span></span><span></span></div>
-          <div><strong>support<span>chat</span></strong><small>AI OPERATIONS</small></div>
+          <div><strong>conexa<span> AI</span></strong><small>AI OPERATIONS</small></div>
         </div>
 
         <button class="new-chat" id="newChat"><span>+</span> New conversation</button>
 
         <nav class="nav-list" aria-label="Main navigation">
-          <a class="nav-item active" href="#"><span class="nav-icon">✦</span> Ask SupportChat</a>
+          <a class="nav-item active" href="#"><span class="nav-icon">✦</span> Ask Conexa AI</a>
           <a class="nav-item" href="#"><span class="nav-icon">▤</span> Knowledge base <b>4</b></a>
           <a class="nav-item" href="#"><span class="nav-icon">◷</span> Recent activity</a>
         </nav>
@@ -40,8 +40,8 @@
 
       <main class="main-content">
         <header class="topbar">
-          <div class="breadcrumbs"><span>Workspace</span><i>/</i><strong>Ask SupportChat</strong></div>
-          <div class="top-actions"><span class="live-pill"><span></span> System operational</span><button class="icon-button" aria-label="Notifications">♧</button><button class="help-button">?</button></div>
+          <div class="breadcrumbs"><span>Workspace</span><i>/</i><strong>Ask Conexa AI</strong></div>
+          <div class="top-actions"><span class="live-pill"><span></span> System operational</span><button class="theme-toggle" id="themeToggle" aria-label="Switch to dark theme">☾ <span>Dark</span></button><button class="icon-button" aria-label="Notifications">♧</button><button class="help-button">?</button></div>
         </header>
 
         <div class="content-scroll">
@@ -66,7 +66,7 @@
               <div class="conversation" id="conversation">
                 <div class="message assistant">
                   <div class="message-avatar">✦</div>
-                  <div><div class="message-meta"><strong>SupportChat</strong><span>just now</span></div><div class="message-bubble">Hi Cristopher — I’m ready to help with Avis and Budget operations. Ask me about policies, procedures, fleet, or customer support.</div><div class="suggestions"><button class="suggestion">What is our vehicle return policy?</button><button class="suggestion">How do I escalate a roadside case?</button><button class="suggestion">Show me the latest fleet checklist</button></div></div>
+                  <div><div class="message-meta"><strong>Conexa AI</strong><span>just now</span></div><div class="message-bubble">Hi Cristopher — I’m ready to help with Avis and Budget operations. Ask me about policies, procedures, fleet, or customer support.</div><div class="suggestions"><button class="suggestion">What is our vehicle return policy?</button><button class="suggestion">How do I escalate a roadside case?</button><button class="suggestion">Show me the latest fleet checklist</button></div></div>
                 </div>
               </div>
               <div class="composer-wrap">
@@ -77,12 +77,14 @@
 
             <aside class="context-panel">
               <div class="context-header"><h2>Workspace context</h2><button class="dots">•••</button></div>
+              <div class="context-block"><div class="context-label"><span class="label-icon">⌘</span> Simulated RAG pipelines</div><div class="rag-card"><div class="rag-title"><span class="rag-icon blue-rag">R1</span><div><strong>Fleet &amp; Policies RAG</strong><small>Operational playbooks · 742 chunks</small></div><span class="rag-status">Ready</span></div><div class="rag-meta"><span>Hybrid search</span><span>0.18 sec</span></div></div><div class="rag-card"><div class="rag-title"><span class="rag-icon violet-rag">R2</span><div><strong>Customer Care RAG</strong><small>Support cases · 418 chunks</small></div><span class="rag-status">Ready</span></div><div class="rag-meta"><span>Semantic search</span><span>0.24 sec</span></div></div><button class="view-all">Manage simulated sources <span>→</span></button></div>
               <div class="context-block"><div class="context-label"><span class="label-icon">⌘</span> Knowledge sources</div><div class="source-list"><div class="source"><span class="source-logo avis">A</span><div><strong>Avis Operations</strong><small>742 documents</small></div><span class="source-status"></span></div><div class="source"><span class="source-logo budget">B</span><div><strong>Budget Operations</strong><small>418 documents</small></div><span class="source-status"></span></div><div class="source"><span class="source-logo policy">▤</span><div><strong>Shared policies</strong><small>124 documents</small></div><span class="source-status"></span></div></div><button class="view-all">View knowledge base <span>→</span></button></div>
               <div class="context-block health"><div class="context-label"><span class="label-icon">⌁</span> Retrieval health <span class="healthy">Healthy</span></div><div class="health-meter"><span></span></div><div class="health-values"><span>Index freshness</span><strong>Updated 8 min ago</strong></div><div class="health-values"><span>Avg. retrieval</span><strong>0.42 sec</strong></div></div>
+              <div class="context-block api-block"><div class="context-label"><span class="label-icon">⌘</span> ChatGPT API connection</div><label class="api-label" for="apiKey">API key <span>Prototype only</span></label><div class="api-input"><input id="apiKey" type="password" placeholder="sk-proj-••••••••••••" autocomplete="off" /><button id="toggleKey" type="button" aria-label="Show API key">Show</button></div><button class="save-api" id="saveApi">Save connection</button><small class="api-note" id="apiStatus">Not connected · key stays in this browser</small></div>
               <div class="tip-card"><span class="tip-spark">✦</span><div><strong>Tip for better answers</strong><p>Include a location, team, or policy name in your question for more precise results.</p></div></div>
             </aside>
           </section>
-          <footer>SupportChat v1.0 <span>•</span> Built for internal use <span>•</span> <a href="#">Privacy & security</a></footer>
+          <footer>Conexa AI v1.0 <span>•</span> Built for internal use <span>•</span> <a href="#">Privacy & security</a></footer>
         </div>
       </main>
     </div>
