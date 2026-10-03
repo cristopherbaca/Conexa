@@ -20,9 +20,9 @@
         <button class="new-chat" id="newChat"><span>+</span> New conversation</button>
 
         <nav class="nav-list" aria-label="Main navigation">
-          <a class="nav-item active" href="#"><span class="nav-icon">✦</span> Ask Conexa AI</a>
-          <a class="nav-item" href="#"><span class="nav-icon">▤</span> Knowledge base <b>4</b></a>
-          <a class="nav-item" href="#"><span class="nav-icon">◷</span> Recent activity</a>
+          <a class="nav-item active" href="#" data-view="chat"><span class="nav-icon">✦</span> Ask Conexa AI</a>
+          <a class="nav-item" href="#" data-view="knowledge"><span class="nav-icon">▤</span> Knowledge base <b>4</b></a>
+          <a class="nav-item" href="#" data-view="activity"><span class="nav-icon">◷</span> Recent activity</a>
         </nav>
 
         <div class="sidebar-section">
@@ -34,14 +34,14 @@
 
         <div class="sidebar-footer">
           <div class="security-badge"><span>✓</span><div><strong>Private workspace</strong><small>Self-hosted · Encrypted</small></div></div>
-          <div class="user-profile"><div class="avatar">CY</div><div><strong>Cristopher Baca</strong><small>Operations team</small></div><span class="more">•••</span></div>
+          <button class="user-profile" id="adminProfile"><div class="avatar">CY</div><div><strong>Cristopher Baca</strong><small>Application administrator</small></div><span class="more">•••</span></button>
         </div>
       </aside>
 
       <main class="main-content">
         <header class="topbar">
-          <div class="breadcrumbs"><span>Workspace</span><i>/</i><strong>Ask Conexa AI</strong></div>
-          <div class="top-actions"><span class="live-pill"><span></span> System operational</span><button class="theme-toggle" id="themeToggle" aria-label="Switch to dark theme">☾ <span>Dark</span></button><button class="icon-button" aria-label="Notifications">♧</button><button class="help-button">?</button></div>
+          <div class="breadcrumbs"><span>Workspace</span><i>/</i><strong id="breadcrumbTitle">Ask Conexa AI</strong></div>
+          <div class="top-actions"><span class="live-pill"><span></span> System operational</span><button class="theme-toggle" id="themeToggle" aria-label="Switch to dark theme">☾ <span>Dark</span></button><button class="icon-button" id="notificationsButton" aria-label="Notifications">♧</button><button class="help-button" id="helpButton">?</button></div>
         </header>
 
         <div class="content-scroll">
@@ -51,7 +51,7 @@
               <h1>Good morning, Cristopher<span>.</span></h1>
               <p>Get accurate answers from your team's policies, playbooks, and knowledge base.</p>
             </div>
-            <div class="model-chip"><span class="pulse"></span><div><small>LOCAL MODEL</small><strong>Llama 3.3 · 70B</strong></div><span class="chevron">⌄</span></div>
+            <div class="model-chip"><span class="pulse"></span><div><small>AI CONNECTION</small><strong id="connectionLabel">API key required</strong></div></div>
           </section>
 
           <section class="stats-row">
@@ -62,7 +62,7 @@
 
           <section class="workspace-grid">
             <div class="chat-panel">
-              <div class="panel-heading"><div><h2>Ask anything about operations</h2><p>Answers are grounded in your private knowledge base.</p></div><button class="dots">•••</button></div>
+              <div class="panel-heading"><div><h2>Ask anything about operations</h2><p>Answers combine your simulated RAG context with ChatGPT.</p></div><button class="dots" id="chatMenuButton">•••</button></div>
               <div class="conversation" id="conversation">
                 <div class="message assistant">
                   <div class="message-avatar">✦</div>
@@ -78,14 +78,16 @@
             <aside class="context-panel">
               <div class="context-header"><h2>Workspace context</h2><button class="dots">•••</button></div>
               <div class="context-block"><div class="context-label"><span class="label-icon">⌘</span> Simulated RAG pipelines</div><div class="rag-card"><div class="rag-title"><span class="rag-icon blue-rag">R1</span><div><strong>Fleet &amp; Policies RAG</strong><small>Operational playbooks · 742 chunks</small></div><span class="rag-status">Ready</span></div><div class="rag-meta"><span>Hybrid search</span><span>0.18 sec</span></div></div><div class="rag-card"><div class="rag-title"><span class="rag-icon violet-rag">R2</span><div><strong>Customer Care RAG</strong><small>Support cases · 418 chunks</small></div><span class="rag-status">Ready</span></div><div class="rag-meta"><span>Semantic search</span><span>0.24 sec</span></div></div><button class="view-all">Manage simulated sources <span>→</span></button></div>
-              <div class="context-block"><div class="context-label"><span class="label-icon">⌘</span> Knowledge sources</div><div class="source-list"><div class="source"><span class="source-logo avis">A</span><div><strong>Avis Operations</strong><small>742 documents</small></div><span class="source-status"></span></div><div class="source"><span class="source-logo budget">B</span><div><strong>Budget Operations</strong><small>418 documents</small></div><span class="source-status"></span></div><div class="source"><span class="source-logo policy">▤</span><div><strong>Shared policies</strong><small>124 documents</small></div><span class="source-status"></span></div></div><button class="view-all">View knowledge base <span>→</span></button></div>
+              <div class="context-block"><div class="context-label"><span class="label-icon">⌘</span> Knowledge sources</div><div class="source-list"><div class="source"><span class="source-logo avis">A</span><div><strong>Avis Operations</strong><small>742 documents</small></div><span class="source-status"></span></div><div class="source"><span class="source-logo budget">B</span><div><strong>Budget Operations</strong><small>418 documents</small></div><span class="source-status"></span></div><div class="source"><span class="source-logo policy">▤</span><div><strong>Shared policies</strong><small>124 documents</small></div><span class="source-status"></span></div></div><button class="view-all" id="knowledgeButton">View knowledge base <span>→</span></button></div>
               <div class="context-block health"><div class="context-label"><span class="label-icon">⌁</span> Retrieval health <span class="healthy">Healthy</span></div><div class="health-meter"><span></span></div><div class="health-values"><span>Index freshness</span><strong>Updated 8 min ago</strong></div><div class="health-values"><span>Avg. retrieval</span><strong>0.42 sec</strong></div></div>
-              <div class="context-block api-block"><div class="context-label"><span class="label-icon">⌘</span> ChatGPT API connection</div><label class="api-label" for="apiKey">API key <span>Prototype only</span></label><div class="api-input"><input id="apiKey" type="password" placeholder="sk-proj-••••••••••••" autocomplete="off" /><button id="toggleKey" type="button" aria-label="Show API key">Show</button></div><button class="save-api" id="saveApi">Save connection</button><small class="api-note" id="apiStatus">Not connected · key stays in this browser</small></div>
+              <div class="context-block api-block"><div class="context-label"><span class="label-icon">⌘</span> ChatGPT API connection</div><label class="api-label" for="apiKey">API key <span>Required to chat</span></label><div class="api-input"><input id="apiKey" type="password" placeholder="sk-proj-••••••••••••" autocomplete="off" /><button id="toggleKey" type="button" aria-label="Show API key">Show</button></div><button class="save-api" id="saveApi">Test &amp; enable chat</button><small class="api-note" id="apiStatus">Not connected · key stays in memory only</small></div>
               <div class="tip-card"><span class="tip-spark">✦</span><div><strong>Tip for better answers</strong><p>Include a location, team, or policy name in your question for more precise results.</p></div></div>
             </aside>
           </section>
           <footer>Conexa AI v1.0 <span>•</span> Built for internal use <span>•</span> <a href="#">Privacy & security</a></footer>
         </div>
+        <div class="toast" id="toast" role="status"></div>
+        <div class="admin-modal" id="adminModal" aria-hidden="true"><div class="admin-card"><div class="admin-heading"><div><span class="eyebrow">ADMINISTRATION</span><h2>Application control center</h2></div><button class="modal-close" id="closeAdmin">×</button></div><div class="admin-grid"><div class="admin-stat"><small>Role</small><strong>Application administrator</strong><span>Full prototype access</span></div><div class="admin-stat"><small>RAG pipelines</small><strong>2 active</strong><span>Fleet + Customer Care</span></div><div class="admin-stat"><small>API session</small><strong id="adminApiState">Not connected</strong><span>Memory-only credential</span></div></div><div class="admin-actions"><button id="adminClear">Clear chat history</button><button id="adminReset">Reset prototype state</button></div></div></div>
       </main>
     </div>
     <script src="app.js"></script>
