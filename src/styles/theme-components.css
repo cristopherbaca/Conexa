@@ -1,0 +1,11 @@
+body[data-theme="dark"] .chart i{background:#3b466f}
+body[data-theme="dark"] .chart i:nth-child(odd){background:#6573d9}
+body[data-theme="dark"] .line-chart{background:repeating-linear-gradient(to bottom,transparent 0,transparent 42px,var(--border) 43px)}
+body[data-theme="dark"] .dropzone{background:var(--primary-soft);border-color:var(--primary)}
+body[data-theme="dark"] .dropzone b{color:var(--text)}
+body[data-theme="dark"] .workspace-avatar,body[data-theme="dark"] .profile-avatar,body[data-theme="dark"] .mini-avatar{background:var(--primary-soft);color:var(--primary)}
+body[data-theme="dark"] .kb-icon,body[data-theme="dark"] .insight-icon{background:var(--primary-soft)}
+body[data-theme="dark"] .sources span{background:var(--primary-soft)}
+body[data-theme="dark"] .conversation.active{background:var(--primary-soft)}
+body[data-theme="dark"] .table-wrap td,body[data-theme="dark"] .table-wrap th{border-color:var(--border)}
+

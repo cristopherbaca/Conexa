@@ -1,47 +1,42 @@
-## Conexa AI prototype
+# Conexa
 
-### Project structure
+Responsive light/dark web implementation of the Conexa interface from
+[`docs/pdfs/Conexa.pdf`](./docs/pdfs/Conexa.pdf).
 
-```text
-SUPPORTCHAT/
-├── docs/
-│   ├── pdfs/                 # Project reference documents
-│   └── rags/                 # Simulated retrieval datasets
-├── src/
-│   ├── index.html            # Prototype entry point
-│   ├── styles.css            # Interface styles
-│   ├── app.js                # View, chat, API, and admin behavior
-│   └── data/
-│       └── workspaceData.js  # Activity and RAG UI data
-└── README.MD
+## Run
+
+Open [`src/index.html`](./src/index.html) directly in a browser. If the browser
+blocks local ES modules, serve the repository with any static server and open
+`/src/`.
+
+Example:
+
+```powershell
+python -m http.server 8000
 ```
 
-This is a browser-only simulation of the private Avis / Budget operations assistant described in the project PDFs. It demonstrates:
+Then visit `http://localhost:8000/src/`.
 
-- A cloud workspace with encrypted transport messaging.
-- Avis, Budget, and shared-policy knowledge sources.
-- Retrieval health and indexed-document context.
-- Suggested operational questions and simulated grounded responses.
-- Two invented RAG pipelines: Fleet & Policies and Customer Care.
-- Light/dark theme toggle.
-- ChatGPT API key input for proof-of-concept browser testing.
-- Direct ChatGPT test mode after a key is entered, with the selected key held in page memory only.
-- Application administrator panel for clearing chat and resetting prototype state.
-- Responsive layouts for desktop and smaller screens.
+## Included screens
 
-### Run it
+- Knowledge-base overview with KPI strip, cards, activity, and retrieval health
+- Documentation list in table and grid views
+- Upload documents modal with progress and validation states
+- Document preview drawer
+- Search & Test playground with retrieved chunks and grounded answer
+- Chunks management
+- Knowledge-base settings
+- Activity/audit log
+- Create knowledge-base wizard
 
-Open [src/index.html](./src/index.html) directly in a browser. No build step or server is required.
+The frontend is a dependency-free static simulation. Chat is represented as a
+UI-only embedded workspace; the remaining modules simulate their server-backed
+actions with local state and toast feedback.
 
-Because the app uses native JavaScript modules, some browsers restrict `file://` imports. If that happens, serve the repository with any static server (for example `python -m http.server` from the project root) and open `http://localhost:8000/src/`.
+## Code organization
 
-### Application behavior
-
-- **Ask Conexa AI** is the full-canvas chat screen.
-- **New conversation** clears the current canvas and creates an activity entry.
-- **Knowledge base** replaces the chat canvas with the two RAG managers and their document lists.
-- **Recent activity** replaces the chat canvas with previous conversations that can be reopened.
-- **Help** replaces the chat canvas with administrator instructions.
-- The administrator profile opens the control center and API connection controls.
-
-The RAG sources are represented by editable JSON datasets in `docs/rags/`. When an API key is entered and tested, the browser calls the OpenAI Chat Completions API directly using a fixed `gpt-4o-mini` model; there is no model selector. The key is never stored in localStorage or committed to the project, but direct browser API use is only suitable for a proof of concept. For production, move the API call behind a server-side proxy and keep the key in an environment variable.
+The JavaScript is organized into an application entrypoint, shared shell,
+page renderers, reusable components, and a small state module. CSS is split
+into focused files and exposed through [`src/styles.css`](./src/styles.css).
+Read [`docs/MAINTENANCE.md`](./docs/MAINTENANCE.md) before adding a page or
+changing the rendering flow.

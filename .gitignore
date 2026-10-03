@@ -1,0 +1,21 @@
+# Local design references and mock source data
+/docs/pdfs/
+/docs/rags/
+
+# Local development output
+node_modules/
+dist/
+build/
+.cache/
+
+# Environment and editor-local files
+.env
+.env.*
+!.env.example
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Operating-system files
+.DS_Store
+Thumbs.db
