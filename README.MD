@@ -5,9 +5,8 @@ Responsive light/dark web implementation of the Conexa interface from
 
 ## Run
 
-Open [`src/index.html`](./src/index.html) directly in a browser. If the browser
-blocks local ES modules, serve the repository with any static server and open
-`/src/`.
+Open [`index.html`](./index.html) directly in a browser. If the browser blocks
+local ES modules, serve the repository with any static server and open `/`.
 
 Example:
 
@@ -15,7 +14,7 @@ Example:
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000/src/`.
+Then visit `http://localhost:8000/`.
 
 ## Included screens
 
@@ -37,6 +36,6 @@ actions with local state and toast feedback.
 
 The JavaScript is organized into an application entrypoint, shared shell,
 page renderers, reusable components, and a small state module. CSS is split
-into focused files and exposed through [`src/styles.css`](./src/styles.css).
+into focused files and exposed through [`styles.css`](./styles.css).
 Read [`docs/MAINTENANCE.md`](./docs/MAINTENANCE.md) before adding a page or
 changing the rendering flow.
