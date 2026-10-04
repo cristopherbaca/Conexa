@@ -1,0 +1,9 @@
+import { PLANS, ROLES, WORKSPACE_STATES } from "../config/access.js";
+import { state } from "../state.js";
+
+const select = (label, key, values) => `<label class="control-field">${label}<select data-control="${key}">${values.map(value => `<option ${state[key] === value ? "selected" : ""}>${value}</option>`).join("")}</select></label>`;
+
+export function controlRoom() {
+  if (!state.demoMode) return "";
+  return `<button class="control-handle" data-action="toggle-control-room"><span>DEMO</span> Control room</button>${state.controlRoomOpen ? `<aside class="control-room" aria-label="Demo control room"><div class="control-room-head"><div><span class="eyebrow">Demo mode</span><h2>Control room</h2></div><button class="icon-button" data-action="toggle-control-room" aria-label="Close control room">×</button></div><p class="control-caption">Change role, plan and workspace state instantly.</p>${select("Role","role",ROLES)}${select("Plan","plan",Object.keys(PLANS))}${select("Workspace state","workspaceState",WORKSPACE_STATES)}<div class="control-summary"><b>Viewing as ${state.role}</b><span>${state.plan} plan · ${state.workspaceState}</span></div><label class="control-field">OpenAI API key<input type="password" data-openai-key placeholder="sk-..." value="${state.openaiKey}" autocomplete="off" /></label><p class="control-caption">Optional local demo setting. The key is stored only in this browser and is never sent by this mock app.</p><div class="control-links"><button class="text-button" data-action="save-openai-key">Save API key</button><button class="text-button" data-action="clear-openai-key">Clear key</button><button class="text-button" data-action="open-public">Public site</button><button class="text-button" data-action="open-staff">Staff console</button><button class="text-button" data-action="open-system">System status</button></div><button class="button ghost" data-action="reset-demo">Reset demo state</button></aside>` : ""}`;
+}

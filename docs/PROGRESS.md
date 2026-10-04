@@ -1,0 +1,19 @@
+# P2 and P3
+- [x] Quality, supervisor, training, compliance, developer, and reporting tool hub
+- [x] Public landing and pricing pages
+- [x] System pages: help, status, 404, 500, maintenance, suspended, trial expired
+- [x] Conexa staff back-office dashboard
+- [x] Tenant, revenue, feature flags, health, support, and announcements surfaces
+- [x] Access matrix documentation
+- [x] Responsive and dark-theme styling for new surfaces
+- [x] Browser smoke validation and JavaScript syntax validation
+- [x] Simulated document indexing and text import update the document list
+- [x] Team invitations update the visible members table
+- [x] Workspace settings persist and update the shell workspace name
+- [x] Role-tool tab selection renders the selected toolset
+- [x] Conversation selection and search update the active Chat thread
+- [x] Knowledge-base status filtering, pagination, re-indexing, deletion, and bulk deletion are simulated
+- [x] Team member search, role filtering, and status toggling are simulated
+- [x] Analytics date ranges update KPIs and CSV export downloads a file
+- [x] Role-tool cards open functional simulated detail drawers
+- [ ] Full Playwright suite and production backend API contract
