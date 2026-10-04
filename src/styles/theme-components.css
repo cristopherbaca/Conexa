@@ -9,3 +9,11 @@ body[data-theme="dark"] .sources span{background:var(--primary-soft)}
 body[data-theme="dark"] .conversation.active{background:var(--primary-soft)}
 body[data-theme="dark"] .table-wrap td,body[data-theme="dark"] .table-wrap th{border-color:var(--border)}
 
+/* Analytics chart */
+.line-chart{background:var(--surface);padding:20px 0 0;height:220px}
+.line-chart:after{display:none}
+.line-chart svg{display:block;width:100%;height:100%;overflow:visible}
+.line-chart .chart-grid line{stroke:var(--border);stroke-width:1}
+.line-chart polyline{fill:none;stroke:var(--primary);stroke-width:3;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.line-chart .chart-points circle{fill:var(--surface);stroke:var(--primary);stroke-width:3;vector-effect:non-scaling-stroke}
+.line-chart i{display:none}

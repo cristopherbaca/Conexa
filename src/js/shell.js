@@ -4,10 +4,8 @@ export function shell(content) {
   const nav = [
     ["chat", "Chat", "chat"],
     ["book", "Knowledge Bases", "knowledge"],
-    ["chart", "Insights", "insights"],
     ["chart", "Analytics", "analytics"],
     ["users", "Team", "team"],
-    ["plug", "Integrations", "integrations"],
     ["settings", "Settings", "settings"],
   ];
   return `<div class="shell">
@@ -18,7 +16,7 @@ export function shell(content) {
       <div class="sidebar-bottom">
         <div class="usage"><div><span>Monthly queries</span><b>62%</b></div><div class="meter"><i></i></div><small>12,480 / 20,000 used</small></div>
         <button class="appearance" data-action="theme">${icon(state.theme === "light" ? "moon" : "sun")} ${state.theme === "light" ? "Dark" : "Light"} appearance ${icon("chevron")}</button>
-        <div class="profile"><span class="profile-avatar">AM</span><span><b>Alex Morgan</b><small>Administrator</small></span></div>
+        <div class="profile"><span class="profile-avatar">CB</span><span><b>Cristopher Baca</b><small>Administrator</small></span></div>
         <small class="powered">Powered by Conexa</small>
       </div>
     </aside>

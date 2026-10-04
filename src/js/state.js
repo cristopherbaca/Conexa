@@ -16,8 +16,6 @@ let state = {
   query: "",
   theme: localStorage.getItem("conexa-theme") || "light",
   toast: "",
-  connectedIntegrations: ["Zendesk"],
-  resolvedInsights: [],
 };
 
 export { state };

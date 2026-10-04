@@ -44,18 +44,9 @@ document.addEventListener("click", (event) => {
   if (action === "edit-metadata") notify("Metadata editor opened.");
   if (action === "delete-document") { state.modal = null; notify("Document deletion simulated and undo is available."); return; }
   if (action === "add-insight") notify("Insight added to the Documentation backlog.");
-  if (action === "resolve-insight") { state.resolvedInsights.push(Number(target.dataset.index)); notify("Knowledge gap marked as resolved."); }
   if (action === "export") notify("Analytics CSV export prepared.");
   if (action === "date-range") notify("Date range selector opened.");
   if (action === "invite") { state.modal = "invite"; }
-  if (action === "connect") {
-    const integration = target.dataset.integration || target.closest(".integration-card")?.querySelector("h3")?.textContent;
-    if (integration && !state.connectedIntegrations.includes(integration)) state.connectedIntegrations.push(integration);
-    notify(`${integration || "Integration"} connected successfully.`);
-  }
-  if (action === "manage-integration") notify(`${target.dataset.integration || "Integration"} settings opened.`);
-  if (action === "api-keys") notify("API key manager opened.");
-  if (action === "webhooks") notify("Webhook manager opened.");
   if (action === "save-settings") notify("Workspace settings saved.");
   if (action === "billing") notify("Billing details opened.");
   if (action === "settings-section") {
